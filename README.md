@@ -75,3 +75,36 @@ flowchart TD
   I --> J[Vector Store]
   J --> K[RAG Answer]
 ```
+
+
+## Components & Features
+
+```mermaid
+graph TB
+  subgraph VFS Core
+    NS[Namespace]
+    IN[Inode]
+    FL[File]
+    VR[Version]
+  end
+  subgraph Storage
+    OB[Object]
+    BK[Block]
+    MN[Manifest]
+  end
+  subgraph AI Knowledge
+    PR[Parser]
+    CK[Chunker]
+    EM[Embedding]
+    VS[Vector Search]
+    RAG[RAG]
+  end
+  subgraph Enterprise
+    RBAC[RBAC]
+    AUD[Audit]
+    RET[Retention]
+  end
+  VFS Core --> Storage
+  VFS Core --> AI Knowledge
+  VFS Core --> Enterprise
+```
