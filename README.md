@@ -41,11 +41,6 @@ flowchart LR
 ```
 
 
-## API
-
-- /api/vfs/* : file operations
-- /api/chat : chatbot
-- /health : status
 
 ## Testing
 
