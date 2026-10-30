@@ -7,10 +7,7 @@ export default function Shell({ children }: { children: React.ReactNode }) {
   const show = path !== "/";
   return (
     <div className="flex min-h-screen">
-      {show && <aside className="w-56 bg-gray-900 text-white p-4 space-y-2">
-        <div className="font-bold text-lg mb-4">VFS AI</div>
-        {pages.map(p => <Link key={p} href={`/${p}`} className="block hover:text-blue-300 capitalize">{p.replace("-"," ")}</Link>)}
-      </aside>}
+
       <div className="flex-1 flex flex-col">
         <header className="bg-white shadow p-4 font-semibold">VFS AI Knowledge System</header>
         <main className="flex-1 p-6">{children}</main>
