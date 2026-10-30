@@ -118,3 +118,9 @@ erDiagram
   MANIFEST_BLOCK }o--|| BLOCK : references
   FILE ||--o{ STORAGE_OBJECT : stores
 ```
+
+## AI Agent
+
+- Provider Manager with quota/rate limit/budget
+- Providers: OpenAI, Anthropic, Gemini
+- DB usage tracking
