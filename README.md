@@ -58,3 +58,20 @@ cd frontend && npm run dev
 
 Frontend: npm run build
 Backend: python -m uvicorn app.main:app
+
+
+## Workflow Diagram
+
+```mermaid
+flowchart TD
+  A[Upload File] --> B[VFS Core]
+  B --> C[Storage Engine]
+  C --> D[Blocks & Manifest]
+  B --> E[Metadata & Version]
+  E --> F[Audit Log]
+  B --> G[AI Ingestion]
+  G --> H[Chunking]
+  H --> I[Embedding]
+  I --> J[Vector Store]
+  J --> K[RAG Answer]
+```
