@@ -11,18 +11,8 @@ Unified platform for managing files, storage, metadata, versions, and AI knowled
 - Frontend: Next.js + Tailwind
 - Backend: FastAPI + PostgreSQL
 
-## Workflow
-
-Upload -> VFS -> Storage -> Blocks/Manifest -> Metadata/Version -> AI Ingestion -> RAG Answer
-
-## Features
-
-- File CRUD, upload/download, versioning
-- Tag, keyword, metadata management
-- Block storage with SHA-256 integrity
-- Chatbot connected to VFS search
-- Enterprise governance: RBAC, audit, retention
-
+## 
+## 
 
 
 ## Architecture Diagram
