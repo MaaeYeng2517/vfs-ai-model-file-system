@@ -1,0 +1,30 @@
+{
+  "name": "@vfs-ai/cli",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "vfs": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/index.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@vfs-ai/types": "workspace:*",
+    "@vfs-ai/utils": "workspace:*",
+    "@vfs-ai/vfs-core": "workspace:*",
+    "@vfs-ai/model-engine": "workspace:*",
+    "@vfs-ai/dataset-engine": "workspace:*",
+    "@vfs-ai/vector-engine": "workspace:*",
+    "@vfs-ai/knowledge-engine": "workspace:*",
+    "commander": "^12.1.0",
+    "chalk": "^5.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.5",
+    "tsx": "^4.19.1",
+    "typescript": "^5.6.3"
+  }
+}

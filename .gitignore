@@ -1,0 +1,24 @@
+# Dependencies
+node_modules
+.pnpm-store
+
+# Build
+dist
+.turbo
+.next
+out
+
+# Data
+data/
+*.db
+*.sqlite
+
+# Env
+.env
+.env.local
+
+# Logs
+*.log
+
+# OS
+.DS_Store
