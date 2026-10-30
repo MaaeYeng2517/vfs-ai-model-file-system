@@ -81,7 +81,7 @@ flowchart TD
 
 ```mermaid
 graph TB
-  subgraph VFS Core
+  subgraph VFS["VFS Core"]
     NS[Namespace]
     IN[Inode]
     FL[File]
@@ -92,19 +92,19 @@ graph TB
     BK[Block]
     MN[Manifest]
   end
-  subgraph AI Knowledge
+  subgraph AI["AI Knowledge"]
     PR[Parser]
     CK[Chunker]
     EM[Embedding]
     VS[Vector Search]
     RAG[RAG]
   end
-  subgraph Enterprise
+  subgraph Ent["Enterprise"]
     RBAC[RBAC]
     AUD[Audit]
     RET[Retention]
   end
-  VFS Core --> Storage
-  VFS Core --> AI Knowledge
-  VFS Core --> Enterprise
+  VFS --> Storage
+  VFS --> AI
+  VFS --> Ent
 ```
