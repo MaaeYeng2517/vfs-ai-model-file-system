@@ -40,13 +40,6 @@ flowchart LR
   AI --> LLM[LLM/Embedding]
 ```
 
-## Quick Start
-
-```bash
-docker compose up -d
-cd backend && DEBUG=false python -m uvicorn app.main:app --reload
-cd frontend && npm run dev
-```
 
 ## API
 
