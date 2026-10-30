@@ -1,0 +1,3 @@
+# MASTER PROMPT: DEVELOP QUESTION-CENTRIC AI KNOWLEDGE SYSTEM FRONTEND
+
+See user request for full specification.

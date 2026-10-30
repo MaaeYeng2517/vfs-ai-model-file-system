@@ -5,3 +5,7 @@ psycopg2-binary
 minio
 python-multipart
 pydantic
+pydantic-settings
+alembic
+loguru
+httpx

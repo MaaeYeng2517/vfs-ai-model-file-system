@@ -4,7 +4,7 @@ from fastapi.responses import Response
 from sqlalchemy.orm import Session
 from app.services.db import get_db, init_db
 from app.services.storage import StorageService
-from app.models.file import FileRecord
+from app.models.file import File as FileRecord
 
 router = APIRouter(prefix="/api/vfs", tags=["vfs"])
 storage = StorageService()
@@ -22,11 +22,11 @@ async def upload(file: UploadFile = File(...), db: Session = Depends(get_db)):
 
 @router.get("/files")
 def list_files(db: Session = Depends(get_db)):
-    return [{"id": f.id, "name": f.name, "size": f.size, "mime_type": f.mime_type, "path": f.path} for f in db.query(FileRecord).all()]
+    return [{"id": f.id, "name": f.name, "size": f.size, "mime_type": f.mime_type, "path": f.path} for f in db.query(File).all()]
 
 @router.delete("/files/{file_id}")
-def delete_file(file_id: int, db: Session = Depends(get_db)):
-    rec = db.get(FileRecord, file_id)
+def delete_file(file_id: str, db: Session = Depends(get_db)):
+    rec = db.get(File, file_id)
     if not rec:
         raise HTTPException(404)
     storage.delete(rec.storage_key)
@@ -34,8 +34,8 @@ def delete_file(file_id: int, db: Session = Depends(get_db)):
     return {"deleted": file_id}
 
 @router.get("/download/{file_id}")
-def download(file_id: int, db: Session = Depends(get_db)):
-    rec = db.get(FileRecord, file_id)
+def download(file_id: str, db: Session = Depends(get_db)):
+    rec = db.get(File, file_id)
     if not rec:
         raise HTTPException(404)
     data = storage.get(rec.storage_key)
