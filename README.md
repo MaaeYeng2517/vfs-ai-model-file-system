@@ -103,3 +103,18 @@ classDiagram
   Manifest --> Block
   File --> StorageObject
 ```
+
+
+## Database Diagram
+
+```mermaid
+erDiagram
+  TENANT ||--o{ NAMESPACE : has
+  NAMESPACE ||--o{ INODE : contains
+  INODE ||--|| FILE : maps
+  FILE ||--o{ FILE_VERSION : versions
+  FILE_VERSION ||--|| MANIFEST : has
+  MANIFEST ||--o{ MANIFEST_BLOCK : contains
+  MANIFEST_BLOCK }o--|| BLOCK : references
+  FILE --> STORAGE_OBJECT : stores
+```
