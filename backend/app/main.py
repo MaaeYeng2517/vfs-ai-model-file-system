@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.api.vfs import router
+from app.api.auth_billing import router as billing_router
 from app.api.free_apis import router as free_router
 from app.api.chat import router as chat_router
 from app.api.auth import router as auth_router
@@ -17,6 +18,7 @@ from app.api.questions import router as questions_router
 app = FastAPI(title="VFS AI Engine")
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
 app.include_router(router)
+app.include_router(billing_router)
 app.include_router(free_router)
 app.include_router(chat_router)
 app.include_router(auth_router)
