@@ -116,5 +116,5 @@ erDiagram
   FILE_VERSION ||--|| MANIFEST : has
   MANIFEST ||--o{ MANIFEST_BLOCK : contains
   MANIFEST_BLOCK }o--|| BLOCK : references
-  FILE --> STORAGE_OBJECT : stores
+  FILE ||--o{ STORAGE_OBJECT : stores
 ```
