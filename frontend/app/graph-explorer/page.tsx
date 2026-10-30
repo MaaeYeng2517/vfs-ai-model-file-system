@@ -1,7 +1,21 @@
 "use client";
-import DataTable from "../../components/DataTable";
-import CrudForm from "../../components/CrudForm";
-const sample = [{id:1,name:"sample",status:"active"}];
-export default function Page() {
-  return <main className="p-8"><h1 className="text-2xl mb-4 capitalize">graph-explorer</h1><CrudForm onSubmit={()=>{}} /><DataTable rows={sample} /></main>;
+import { useCallback } from "react";
+import ReactFlow, { Background, Controls, addEdge, useNodesState, useEdgesState } from "reactflow";
+import "reactflow/dist/style.css";
+
+const initialNodes = [{ id: "1", position: { x: 0, y: 0 }, data: { label: "File" } }, { id: "2", position: { x: 200, y: 0 }, data: { label: "Chunk" } }];
+const initialEdges = [{ id: "e1-2", source: "1", target: "2" }];
+
+export default function GraphExplorer() {
+  const [nodes, , onNodesChange] = useNodesState(initialNodes);
+  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+  const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), [setEdges]);
+  return (
+    <main className="h-screen">
+      <ReactFlow nodes={nodes} edges={edges} onNodesChange={onNodesChange} onEdgesChange={onEdgesChange} onConnect={onConnect} fitView>
+        <Background />
+        <Controls />
+      </ReactFlow>
+    </main>
+  );
 }
