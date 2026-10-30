@@ -23,6 +23,23 @@ Upload -> VFS -> Storage -> Blocks/Manifest -> Metadata/Version -> AI Ingestion 
 - Chatbot connected to VFS search
 - Enterprise governance: RBAC, audit, retention
 
+
+
+## Architecture Diagram
+
+```mermaid
+flowchart LR
+  U[User] --> FE[Next.js Frontend]
+  FE --> API[FastAPI Backend]
+  API --> VFS[VFS Core]
+  VFS --> DB[(PostgreSQL)]
+  VFS --> ST[Storage: Local/MinIO]
+  ST --> BL[Blocks/Manifests]
+  API --> AI[AI Knowledge Engine]
+  AI --> VS[(Vector Store)]
+  AI --> LLM[LLM/Embedding]
+```
+
 ## Quick Start
 
 ```bash
