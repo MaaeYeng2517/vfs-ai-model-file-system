@@ -108,3 +108,25 @@ graph TB
   VFS --> AI
   VFS --> Ent
 ```
+
+
+## Class Diagram
+
+```mermaid
+classDiagram
+  class Tenant
+  class Namespace
+  class Inode
+  class File
+  class FileVersion
+  class StorageObject
+  class Block
+  class Manifest
+  Tenant --> Namespace
+  Namespace --> Inode
+  Inode --> File
+  File --> FileVersion
+  FileVersion --> Manifest
+  Manifest --> Block
+  File --> StorageObject
+```
