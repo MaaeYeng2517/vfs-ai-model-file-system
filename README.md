@@ -1,82 +1,126 @@
-# VFS-AI-Engine
+# VFS AI Knowledge System
 
-Unified system for managing AI files, models, datasets, vectors and knowledge in one place.
+Unified platform for managing files, storage, metadata, versions, and AI knowledge.
 
 ## Architecture
 
-VFS-AI-Engine consists of 5 core engines:
+- VFS Core: namespaces, inodes, files, directories
+- Storage Engine: local/MinIO, blocks, manifests, dedup, integrity
+- Metadata & Versioning: metadata, lifecycle, RBAC, audit, retention
+- AI Knowledge: parsing, chunking, embedding, vector search, RAG
+- Frontend: Next.js + Tailwind
+- Backend: FastAPI + PostgreSQL
 
-| Engine | Purpose |
-| --- | --- |
-| **VFS Engine** | Virtual File System - manages files, directories, namespaces |
-| **AI Model Engine** | Manages model artifacts (GGUF, Safetensors, PyTorch, ONNX) |
-| **Dataset Engine** | Manages datasets with versioning (JSONL, CSV, Parquet) |
-| **Vector Engine** | Manages embeddings and vector indexes for similarity search |
-| **Knowledge Engine** | Manages documents, chunking, and knowledge graph for RAG |
+## 
+## 
 
-## Quick Start
 
-```bash
-# Install dependencies
-pnpm install
+## Architecture Diagram
 
-# Initialize
-pnpm --filter @vfs-ai/cli dev init
-
-# Create namespace
-pnpm --filter @vfs-ai/cli dev ns:create myproject
-
-# Write a file
-pnpm --filter @vfs-ai/cli dev fs:write default hello.txt "Hello World"
-
-# List files
-pnpm --filter @vfs-ai/cli dev fs:ls default
+```mermaid
+flowchart LR
+  U[User] --> FE[Next.js Frontend]
+  FE --> API[FastAPI Backend]
+  API --> VFS[VFS Core]
+  VFS --> DB[(PostgreSQL)]
+  VFS --> ST[Storage: Local/MinIO]
+  ST --> BL[Blocks/Manifests]
+  API --> AI[AI Knowledge Engine]
+  AI --> VS[(Vector Store)]
+  AI --> LLM[LLM/Embedding]
 ```
 
-## Project Structure
 
-```
-vfs-ai-engine/
-├── apps/
-│   ├── api/    # REST API (Hono)
-│   ├── cli/    # CLI tool
-│   └── web/    # Web UI (coming soon)
-├── packages/
-│   ├── types/           # Shared types
-│   ├── utils/           # Utilities
-│   ├── vfs-core/        # VFS Engine
-│   ├── model-engine/    # Model Engine
-│   ├── dataset-engine/  # Dataset Engine
-│   ├── vector-engine/   # Vector Engine
-│   └── knowledge-engine/# Knowledge Engine
-└── data/                # Local storage
-```
 
-## CLI Commands
 
-```bash
-vfs init                    # Initialize engine
-vfs ns:create <name>        # Create namespace
-vfs ns:list                 # List namespaces
-vfs fs:write <ns> <path> <content>
-vfs fs:read <ns> <path>
-vfs fs:ls [ns] [dir]
-vfs model:register <ns> <path>
-vfs model:list
-vfs dataset:register <ns> <path>
-vfs dataset:list
-vfs vector:create <ns> <name>
-vfs vector:list
-vfs knowledge:ingest <ns> <path>
-vfs knowledge:list
+## Workflow Diagram
+
+```mermaid
+flowchart TD
+  A[Upload File] --> B[VFS Core]
+  B --> C[Storage Engine]
+  C --> D[Blocks & Manifest]
+  B --> E[Metadata & Version]
+  E --> F[Audit Log]
+  B --> G[AI Ingestion]
+  G --> H[Chunking]
+  H --> I[Embedding]
+  I --> J[Vector Store]
+  J --> K[RAG Answer]
 ```
 
-## API
 
-Start API server:
-```bash
-pnpm --filter @vfs-ai/api dev
+## Components & Features
+
+```mermaid
+graph TB
+  subgraph VFS["VFS Core"]
+    NS[Namespace]
+    IN[Inode]
+    FL[File]
+    VR[Version]
+  end
+  subgraph Storage
+    OB[Object]
+    BK[Block]
+    MN[Manifest]
+  end
+  subgraph AI["AI Knowledge"]
+    PR[Parser]
+    CK[Chunker]
+    EM[Embedding]
+    VS[Vector Search]
+    RAG[RAG]
+  end
+  subgraph Ent["Enterprise"]
+    RBAC[RBAC]
+    AUD[Audit]
+    RET[Retention]
+  end
+  VFS --> Storage
+  VFS --> AI
+  VFS --> Ent
 ```
 
-Endpoints available at `http://localhost:3000`
-# vfs-ai-model-file-system
+
+## Class Diagram
+
+```mermaid
+classDiagram
+  class Tenant
+  class Namespace
+  class Inode
+  class File
+  class FileVersion
+  class StorageObject
+  class Block
+  class Manifest
+  Tenant --> Namespace
+  Namespace --> Inode
+  Inode --> File
+  File --> FileVersion
+  FileVersion --> Manifest
+  Manifest --> Block
+  File --> StorageObject
+```
+
+
+## Database Diagram
+
+```mermaid
+erDiagram
+  TENANT ||--o{ NAMESPACE : has
+  NAMESPACE ||--o{ INODE : contains
+  INODE ||--|| FILE : maps
+  FILE ||--o{ FILE_VERSION : versions
+  FILE_VERSION ||--|| MANIFEST : has
+  MANIFEST ||--o{ MANIFEST_BLOCK : contains
+  MANIFEST_BLOCK }o--|| BLOCK : references
+  FILE ||--o{ STORAGE_OBJECT : stores
+```
+
+## AI Agent
+
+- Provider Manager with quota/rate limit/budget
+- Providers: OpenAI, Anthropic, Gemini
+- DB usage tracking
