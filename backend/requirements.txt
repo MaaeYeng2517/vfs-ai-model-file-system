@@ -8,4 +8,5 @@ pydantic
 pydantic-settings
 alembic
 loguru
-httpx
+httpxpython-jose[cryptography]
+passlib[bcrypt]
