@@ -42,11 +42,6 @@ flowchart LR
 
 
 
-## Testing
-
-Frontend: npm run build
-Backend: python -m uvicorn app.main:app
-
 
 ## Workflow Diagram
 
