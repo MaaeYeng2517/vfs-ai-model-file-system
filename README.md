@@ -80,3 +80,17 @@ pnpm --filter @vfs-ai/api dev
 
 Endpoints available at `http://localhost:3000`
 # vfs-ai-model-file-system
+
+## System Summary
+
+VFS AI Knowledge System integrates:
+- VFS Core: namespaces, inodes, files, versions, storage
+- Storage Engine: local/MinIO, blocks, manifests, dedup, integrity
+- AI Knowledge: parsing, chunking, embedding, vector search, RAG
+- Enterprise: RBAC, audit, retention, legal hold
+- Frontend: Next.js dashboard, file explorer, admin pages
+- Chatbot: connected to VFS search
+
+## Workflow
+
+Upload -> VFS -> Storage -> Blocks/Manifest -> Metadata/Version -> AI Ingestion -> RAG Answer
