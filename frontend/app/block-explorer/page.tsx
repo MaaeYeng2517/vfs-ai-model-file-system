@@ -1,2 +1,6 @@
 "use client";
-export default function Page(){return <main className="p-8"><h1 className="text-2xl">block-explorer</h1></main>;}
+import { Tldraw } from "@tldraw/tldraw";
+import "@tldraw/tldraw/tldraw.css";
+export default function Page() {
+  return <main style={{ height: "100vh" }}><Tldraw /></main>;
+}
